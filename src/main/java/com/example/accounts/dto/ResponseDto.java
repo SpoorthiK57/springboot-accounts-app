@@ -3,8 +3,9 @@ package com.example.accounts.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class ResponseDto {
     private String statusCode;
     private String statusMsg;
