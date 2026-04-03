@@ -1,0 +1,7 @@
+package com.practice.accounts.repository;
+
+import com.practice.accounts.entity.Accounts;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountsRepository extends JpaRepository<Accounts, Long> {
+}
