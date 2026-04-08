@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 @Getter @Setter @ToString
 public class BaseEntity {
 
-    @Column(updatable = false, nullable=false)
+    @Column(updatable = false)
     private LocalDateTime createdAt;
-    @Column(updatable = false, nullable=false)
+    @Column(updatable = false)
     private String createdBy;
     @Column(insertable = false)
     private LocalDateTime updatedAt;
