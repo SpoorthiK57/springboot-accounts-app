@@ -88,7 +88,6 @@ public class AccountsServiceImpl implements IAccountsService {
         return true;
 
     }
-
     private Accounts createNewAccount(Customer customer){
         Accounts newAccount = new Accounts();
         newAccount.setCustomerId(customer.getCustomerId());

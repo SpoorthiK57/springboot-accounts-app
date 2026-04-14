@@ -5,8 +5,8 @@ import com.practice.accounts.entity.Customer;
 
 public class CustomerMapper {
     public static CustomerDto mapToCustomerDto(Customer customer, CustomerDto customerDto){
-        customerDto.setEmail(customerDto.getEmail());
-        customerDto.setName(customerDto.getName());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setName(customer.getName());
         customerDto.setMobileNumber(String.valueOf(customerDto.getMobileNumber()));
         return customerDto;
     }

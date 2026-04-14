@@ -15,5 +15,9 @@ public class ErrorResponseDto {
     private LocalDateTime errorTime;
 
     public ErrorResponseDto(String description, HttpStatus httpStatus, String message, LocalDateTime now) {
+        this.apiPath = description;
+        this.errorCode = httpStatus;
+        this.errorMessage = message;
+        this.errorTime = now;
     }
 }
