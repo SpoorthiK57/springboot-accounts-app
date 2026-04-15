@@ -2,9 +2,12 @@ package com.practice.accounts.controller;
 
 import com.practice.accounts.constants.AccountsConstants;
 import com.practice.accounts.dto.CustomerDto;
+import com.practice.accounts.dto.ErrorResponseDto;
 import com.practice.accounts.dto.ResponseDto;
 import com.practice.accounts.service.IAccountsService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -72,10 +75,16 @@ public class AccountsController {
             responseCode = "200",
             description="HTTP status OK"
             ),
-
+            @ApiResponse(
+                    responseCode = "417",
+                    description="HTTP status EXCEPTION FAILED"
+            ),
             @ApiResponse(
             responseCode = "500",
-            description="HTTP status Internal Server Error"
+            description="HTTP status Internal Server Error",
+                    content=@Content(
+                            schema=@Schema(implementation= ErrorResponseDto.class)
+    )
             )}
 
     )
@@ -87,8 +96,8 @@ public class AccountsController {
                     new ResponseDto(AccountsConstants.STATUS_200, AccountsConstants.MESSAGE_200)
             );
         } else{
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResponseDto(AccountsConstants.STATUS_500, AccountsConstants.MESSAGE_500));
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(
+                    new ResponseDto(AccountsConstants.STATUS_417, AccountsConstants.MESSAGE_417_UPDATE));
         }
 
     }
@@ -101,6 +110,10 @@ public class AccountsController {
             @ApiResponse(
                     responseCode = "200",
                     description="HTTP status OK"
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description="HTTP status EXCEPTION FAILED"
             ),
 
             @ApiResponse(
@@ -119,8 +132,8 @@ public class AccountsController {
                     new ResponseDto(AccountsConstants.STATUS_200, AccountsConstants.MESSAGE_200)
             );
         } else{
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
-                    new ResponseDto(AccountsConstants.STATUS_500, AccountsConstants.MESSAGE_500));
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(
+                    new ResponseDto(AccountsConstants.STATUS_417, AccountsConstants.MESSAGE_417_DELETE));
         }
 
     }
