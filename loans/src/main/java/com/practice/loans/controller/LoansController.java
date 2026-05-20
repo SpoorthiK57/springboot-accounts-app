@@ -5,6 +5,7 @@ import com.practice.loans.constants.LoansConstants;
 import com.practice.loans.dto.LoansDto;
 import com.practice.loans.dto.ResponseDto;
 import com.practice.loans.service.ILoansService;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class LoansController {
     private ILoansService iLoansService;
 
     @PostMapping("/create")
-    public ResponseEntity<ResponseDto> createLoan(@RequestParam String mobileNumber){
+    public ResponseEntity<ResponseDto> createLoan(@RequestParam @Pattern(regexp="(^$|[0-9]{10})",message = "MobileNumber must be 10 digits") String mobileNumber){
     iLoansService.createLoan(mobileNumber);
     return ResponseEntity
             .status(HttpStatus.CREATED)
@@ -26,7 +27,7 @@ public class LoansController {
     }
 
     @GetMapping("/fetch")
-    public ResponseEntity<LoansDto> fetchLoan(@RequestParam String mobileNumber){
+    public ResponseEntity<LoansDto> fetchLoan(@RequestParam @Pattern(regexp="(^$|[0-9]{10})",message = "MobileNumber must be 10 digits") String mobileNumber){
         LoansDto loansDto= iLoansService.fetchLoan(mobileNumber);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -47,7 +48,7 @@ public class LoansController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<ResponseDto> deleteLoan(@RequestParam String mobileNumber){
+    public ResponseEntity<ResponseDto> deleteLoan(@RequestParam @Pattern(regexp="(^$|[0-9]{10})",message = "MobileNumber must be 10 digits") String mobileNumber){
 
         boolean isDeleted = iLoansService.deleteLoan(mobileNumber);
         if(isDeleted){
